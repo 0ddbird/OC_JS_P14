@@ -1,0 +1,35 @@
+.title_row {
+  display: grid;
+  // grid-template-columns: repeat(9, 1fr);
+}
+
+.item_row {
+  display: grid;
+}
+
+.table-top-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-bottom-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-btn {
+  height: 10px;
+  width: 10px;
+  font-size: 6px;
+}
+
+.title-cell{
+  display: flex;
+}
+
+.sort-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
