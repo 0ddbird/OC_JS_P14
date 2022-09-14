@@ -11,15 +11,12 @@ const CreateEmployee = () => {
   const modalContent = 'Employee created!'
 
   const [modalDisplayed, setModalDisplayed] = useState(false)
-  const [statesSelectOptions, setStatesSelectOption] = useState(states)
-  const [departmentsSelectOptions, setDepartmentSelectOption] = useState(departments)
+  const [selectedState, setSelectedState] = useState(states[0])
+  const [selectedDepartment, setSelectedDepartment] = useState(departments[0])
 
-  console.log(departments)
   function handleFormSubmit (e) {
     e.preventDefault()
-    console.log('handleFormSubmit')
     setModalDisplayed(true)
-    console.log(modalDisplayed)
   }
   return (
   <>
@@ -52,13 +49,13 @@ const CreateEmployee = () => {
           <input id='city' type='text'></input>
 
           <label htmlFor='state'>State</label>
-          {<Select options={statesSelectOptions} setSelectOption={setStatesSelectOption}/>}
+          {<Select options={states} selected={selectedState} setSelected={setSelectedState}/>}
 
           <label htmlFor='zipcode'>Zip Code</label>
           <input type='text'/>
         </fieldset>
         <label htmlFor='department'>Department</label>
-        {<Select options={departmentsSelectOptions} setSelectOptions={setDepartmentSelectOption} />}
+        {<Select options={departments} selected={selectedDepartment} setSelected={setSelectedDepartment} />}
         <button type='submit'>Save</button>
       </form>
     </div>

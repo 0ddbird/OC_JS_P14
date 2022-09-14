@@ -2,16 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { v4 as uuidv4 } from 'uuid'
 
-const Select = ({ options, setSelectOption }) => {
-  function handleSelectChange (e) {
-    setSelectOption(e.target.value)
+const Select = ({ options, selected, setSelected }) => {
+  function handleOptionSelection (event) {
+    console.log(event.target.value)
+    const newSelection = options.find(object => object.value.toString() === event.target.value)
+    setSelected(newSelection)
   }
   return (
-    <select onChange={(e) => handleSelectChange(e)}>
+    <select value={`${selected.value}`} onChange={(event) => handleOptionSelection(event)}>
       {
         options.map(option => {
           return (
-            <option key={uuidv4()} value={option.value}>{option.name}</option>
+            <option key={uuidv4()} value={`${option.value}`}>{option.name}</option>
           )
         })
       }
@@ -21,8 +23,8 @@ const Select = ({ options, setSelectOption }) => {
 
 Select.propTypes = {
   options: PropTypes.array,
-  setSelectOption: PropTypes.func
-
+  selected: PropTypes.object,
+  setSelected: PropTypes.func
 }
 
 export default Select

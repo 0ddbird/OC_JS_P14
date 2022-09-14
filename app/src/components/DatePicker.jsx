@@ -1,7 +1,11 @@
 import React from 'react'
 
 const DatePicker = () => {
-  return (<div>DatePicker</div>)
+  return (
+  <div>
+
+  </div>
+  )
 }
 
 export default DatePicker
