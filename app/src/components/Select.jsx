@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 const Select = ({ options, selected, setSelected }) => {
   function handleOptionSelection (event) {
-    console.log(event.target.value)
     const newSelection = options.find(object => object.value.toString() === event.target.value)
     setSelected(newSelection)
   }

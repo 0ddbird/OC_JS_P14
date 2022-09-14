@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import DatePicker from '../components/datepicker/DatePicker'
 import Modal from '../components/Modal'
 import Select from '../components/Select'
@@ -14,18 +13,29 @@ const CreateEmployee = () => {
   const [selectedState, setSelectedState] = useState(states[0])
   const [selectedDepartment, setSelectedDepartment] = useState(departments[0])
 
+  const birthDateOptions = {
+    startYear: 1920,
+    stopYear: 2022,
+    defaultYear: { name: '1980', value: 1980 },
+    defaultMonth: { name: 'January', value: 0 }
+  }
+
+  const startDateOptions = {
+    startYear: 1990,
+    stopYear: 2022,
+    defaultYear: { name: '2022', value: 2022 },
+    defaultMonth: { name: 'August', value: 7 }
+  }
+
   function handleFormSubmit (e) {
     e.preventDefault()
+    console.log(document.forms[0])
     setModalDisplayed(true)
   }
   return (
   <>
-    <div className='title'>
-      <h1>HRnet</h1>
-    </div>
     <div className='container'>
-      <NavLink to='/employees'>View Current Employees</NavLink>
-      <h2>Create Employee</h2>
+      <h1>Create Employee</h1>
       <form id='create-employee-form' onSubmit={(e) => handleFormSubmit(e)}>
 
         <label htmlFor='first-name'>First name</label>
@@ -35,12 +45,12 @@ const CreateEmployee = () => {
         <input id='last-name' type='text'/>
 
         <label id='date-of-birth'>Date of Birth</label>
-        {<DatePicker />}
+        {<DatePicker startYear={birthDateOptions.startYear} stopYear={birthDateOptions.stopYear} defaultYear={birthDateOptions.defaultYear} defaultMonth={birthDateOptions.defaultMonth}/>}
 
         <label id='start-date'>Start Date</label>
-        {<DatePicker />}
+        {<DatePicker startYear={startDateOptions.startYear} stopYear={startDateOptions.stopYear} defaultYear={startDateOptions.defaultYear} defaultMonth={startDateOptions.defaultMonth}/>}
 
-        <fieldset>
+        <fieldset id='create-employee-form-fieldset'>
           <legend>Adress</legend>
           <label htmlFor='street'>Street</label>
           <input id='street' type='text'/>
@@ -56,7 +66,9 @@ const CreateEmployee = () => {
         </fieldset>
         <label htmlFor='department'>Department</label>
         {<Select options={departments} selected={selectedDepartment} setSelected={setSelectedDepartment} />}
-        <button type='submit'>Save</button>
+        <div className='submit-button-container'>
+          <button id='submit-form-button' type='submit'>Save</button>
+        </div>
       </form>
     </div>
     {<Modal title={modalTitle} content={modalContent} modalDisplayed={modalDisplayed} setModalDisplayed={setModalDisplayed}/>}

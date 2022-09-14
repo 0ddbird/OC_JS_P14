@@ -1,3 +1,5 @@
+@use '../abstract/' as a;
+
 .title {
   display: flex;
   align-items: center;
@@ -15,8 +17,39 @@ label {
   display: block;
   margin-top: 1rem;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .address {
   margin-top: 10px;
+}
+
+#create-employee-form {
+  background-color: a.$clr-grey;
+  padding: 20px 50px;
+  border-radius: 10px;
+}
+
+#create-employee-form-fieldset {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.submit-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#submit-form-button {
+  margin-top: 20px;
+  background-color: a.$clr-green;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 10px;
 }
