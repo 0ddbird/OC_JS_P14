@@ -16,7 +16,7 @@ const months = [
 
 function getYearOptions (startYear, stopYear) {
   const yearRange = []
-  for (let i = startYear; i < stopYear; i++) yearRange.push({ name: `${i}`, value: i })
+  for (let i = startYear; i <= stopYear; i++) yearRange.push({ name: `${i}`, value: i })
   return yearRange
 }
 

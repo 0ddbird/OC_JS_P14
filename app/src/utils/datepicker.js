@@ -16,7 +16,7 @@ function getCurrentMonthDays (startDate, stopDate) {
   const dateArray = []
   let currentStartDate = startDate
 
-  while (currentStartDate < stopDate) {
+  while (currentStartDate <= stopDate) {
     dateArray.push(new Date(currentStartDate))
     currentStartDate = currentStartDate.addDays(1)
   }
@@ -42,7 +42,7 @@ function fillDaysFromNextMonth (stopDate) {
   const dateArray = []
   let currentStopDate = stopDate
 
-  for (let i = currentStopDate.getDay(); i <= 6; i++) {
+  for (let i = currentStopDate.getDay(); i !== 6; i++) {
     dateArray.push(new Date(currentStopDate))
     currentStopDate = currentStopDate.addDays(1)
   }
@@ -50,7 +50,6 @@ function fillDaysFromNextMonth (stopDate) {
 }
 
 function getDates (year, month) {
-  console.log(year, month)
   // Months are indexed from 0
   let previousMonthDays, nextMonthDays
 
@@ -65,7 +64,26 @@ function getDates (year, month) {
     currentMonth: currentMonthDays,
     nextMonth: nextMonthDays
   }
+
   return result
 }
 
+/*   function highlightCurrentDay (date) {
+    const todaysDate = new Date().getDate()
+    const todaysMonth = new Date().getMonth()
+    const todaysYear = new Date().getFullYear()
+
+    const sameDay = date.getDate() === todaysDate
+    const sameMonth = date.getMonth() === todaysMonth
+    const sameYear = date.getFullYear() === todaysYear
+
+    const sameDate = sameDay && sameMonth && sameYear
+    if (sameDate) {
+
+    }
+  } */
+
 export { getDates }
+
+// December 2022 : manque un jour
+// JANVIER 2004 : manque 1 jour

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import DatePicker from '../components/DatePicker'
+import DatePicker from '../components/datepicker/DatePicker'
 import Modal from '../components/Modal'
 import Select from '../components/Select'
 import { states } from '../mocks/states'
