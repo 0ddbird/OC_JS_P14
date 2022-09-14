@@ -1,0 +1,39 @@
+.date-picker-panel {
+  border: 1px solid black;
+
+}
+
+.date-picker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.cell {
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-picker__dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.previous-month-date {
+  background-color: grey;
+}
+
+.next-month-date {
+  background-color: grey;
+}
+
+.date-picker-options {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  & > img {
+    height: 10px;
+    width: 10px;
+  }
+}

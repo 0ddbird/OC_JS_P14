@@ -28,11 +28,7 @@ const Table = ({ items, options }) => {
 
   function searchByKeyword (items, keyword) {
     const result = []
-    console.log(items)
-    console.log(keyword)
-    items.forEach(item => {
-      if (Object.values(item).toString().toLowerCase().includes(keyword)) result.push(item)
-    })
+    items.forEach(item => { if (Object.values(item).toString().toLowerCase().includes(keyword)) result.push(item) })
     return result
   }
 
