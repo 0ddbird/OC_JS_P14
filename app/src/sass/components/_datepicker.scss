@@ -1,6 +1,18 @@
-.date-picker-panel {
-  border: 1px solid black;
+@use '../abstract/' as a;
 
+.date-picker {
+  position: relative;
+  background-color: a.$clr-grey;
+}
+
+.date-picker-panel {
+  background-color: a.$clr-grey;
+  border: 1px solid a.$clr-dgrey;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
 }
 
 .date-picker__weekdays {
@@ -9,10 +21,19 @@
 }
 
 .cell {
-  border: 1px solid grey;
+  border: 1px solid a.$clr-dgrey;
+  width: 40px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: a.$clr-green;
+    color: white;
+  }
 }
 
 .date-picker__dates {
@@ -20,12 +41,16 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
+
+
 .previous-month-date {
-  background-color: grey;
+  background-color: a.$clr-grey;
+  color: a.$clr-dgrey;
 }
 
 .next-month-date {
-  background-color: grey;
+  background-color: a.$clr-grey;
+  color: a.$clr-dgrey;
 }
 
 .date-picker-options {

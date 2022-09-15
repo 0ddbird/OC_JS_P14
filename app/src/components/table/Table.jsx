@@ -10,20 +10,14 @@ import { sortEntries } from '../../utils/handleEntries'
 import { rangeOptions } from '../../mocks/entries'
 
 const Table = ({ items, options }) => {
-  if (!items) return <div>No data available</div>
-
-  const [range, setRange] = useState(
-    {
-      name: '10',
-      value: 10
-    }
-  )
+  if (!items.items) return <div>No data available</div>
+  const [range, setRange] = useState({ name: '10', value: 10 })
   const [rangeStart, setRangeStart] = useState(0)
-  const [currentBatch, setCurrentBatch] = useState(items)
+  const [currentBatch, setCurrentBatch] = useState(items.items)
   const [sortOption, setSortOption] = useState(undefined)
   const [searchKeyword, setSearchKeyword] = useState(undefined)
   const tableParams = { range, rangeStart, sortOption, searchKeyword }
-  const categories = Object.keys(items[0])
+  const categories = Object.values(items.headers)
   const gridColumns = `repeat(${categories.length}, 1fr)`
 
   function searchByKeyword (items, keyword) {
@@ -58,7 +52,7 @@ const Table = ({ items, options }) => {
   }
 
   useEffect(() => {
-    const currentBatch = processBatch(items, tableParams)
+    const currentBatch = processBatch(items.items, tableParams)
     setCurrentBatch(currentBatch)
   }, [sortOption, range, rangeStart, searchKeyword])
 
@@ -88,15 +82,15 @@ const Table = ({ items, options }) => {
         })
       }
       <div className='table-bottom-options'>
-        { options.countModule && <EntryCount rangeStart={rangeStart} range={currentBatch.length} totalItems={items.length}/> }
-        { options.navigationModule && <PageNavigation items={items} rangeStart={rangeStart} range={range.value} setRangeStart={setRangeStart}/> }
+        { options.countModule && <EntryCount rangeStart={rangeStart} range={currentBatch.length} totalItems={items.items.length}/> }
+        { options.navigationModule && <PageNavigation items={items.items} rangeStart={rangeStart} range={range.value} setRangeStart={setRangeStart}/> }
       </div>
     </div>
   )
 }
 
 Table.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.object,
   options: PropTypes.object
 }
 

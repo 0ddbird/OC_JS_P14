@@ -8,7 +8,7 @@ import HomeButton from './HomeButton'
 import DisplayedDates from './DisplayedDates'
 import PropTypes from 'prop-types'
 
-const DatePicker = ({ startYear, stopYear, defaultYear, defaultMonth }) => {
+const DatePicker = ({ startYear, stopYear, defaultYear, defaultMonth, selectedDate, setSelectedDate }) => {
   // Define start and stop years for Select options
   const yearOptions = getYearOptions(startYear, stopYear)
 
@@ -18,12 +18,12 @@ const DatePicker = ({ startYear, stopYear, defaultYear, defaultMonth }) => {
   const [selectedMonthOption, setSelectedMonthOption] = useState(defaultMonth)
   const [selectedYearOption, setSelectedYearOption] = useState(defaultYear)
   const [dateRanges, setDateRanges] = useState(initialDatesArray)
-  const [selectedDate, setSelectedDate] = useState('')
 
   const isBoundary = {
     start: selectedYearOption.value === startYear & selectedMonthOption.value === 0,
     end: selectedYearOption.value === stopYear & selectedMonthOption.value === 11
   }
+  const formattedDate = `${selectedDate.value.getFullYear()}-${selectedDate.value.getMonth()}-${selectedDate.value.getDate()}`
 
   useEffect(() => {
     const newRange = getDates(selectedYearOption.value, selectedMonthOption.value)
@@ -32,7 +32,7 @@ const DatePicker = ({ startYear, stopYear, defaultYear, defaultMonth }) => {
 
   return (
     <div className='date-picker'>
-      <input type='text' readOnly onClick={() => setDatePickerOpen(true)} value={selectedDate.name}></input>
+      <input type='text' readOnly value={`${formattedDate}`} onClick={() => setDatePickerOpen(true)}></input>
       {isDatePickerOpen &&
       <div className='date-picker-panel'>
         <div className='date-picker-options'>
@@ -55,7 +55,9 @@ DatePicker.propTypes = {
   startYear: PropTypes.number,
   stopYear: PropTypes.number,
   defaultYear: PropTypes.object,
-  defaultMonth: PropTypes.object
+  defaultMonth: PropTypes.object,
+  selectedDate: PropTypes.object,
+  setSelectedDate: PropTypes.func
 }
 
 export default DatePicker
