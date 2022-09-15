@@ -11,7 +11,6 @@ const DateButton = ({ date, month, setSelectedDate, setDatePickerOpen }) => {
   }
   function handleDatePick (e) {
     const pickedDate = formatDateValue(e.target.value)
-    console.log(pickedDate)
     setSelectedDate(pickedDate)
     setDatePickerOpen(false)
   }

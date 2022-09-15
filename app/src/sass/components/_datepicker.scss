@@ -21,6 +21,7 @@
 }
 
 .cell {
+  border: none;
   border: 1px solid a.$clr-dgrey;
   width: 40px;
   height: 30px;
@@ -30,6 +31,10 @@
   background-color: white;
   cursor: pointer;
 
+
+}
+
+.cell.date {
   &:hover {
     background-color: a.$clr-green;
     color: white;
@@ -62,3 +67,10 @@
     width: 10px;
   }
 }
+
+.date-nav {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+

@@ -1,4 +1,3 @@
-// Adding 2 methods to the Date prototype
 // eslint-disable-next-line no-extend-native
 Date.prototype.addDays = function (days) {
   const date = new Date(this.valueOf())
@@ -68,22 +67,4 @@ function getDates (year, month) {
   return result
 }
 
-/*   function highlightCurrentDay (date) {
-    const todaysDate = new Date().getDate()
-    const todaysMonth = new Date().getMonth()
-    const todaysYear = new Date().getFullYear()
-
-    const sameDay = date.getDate() === todaysDate
-    const sameMonth = date.getMonth() === todaysMonth
-    const sameYear = date.getFullYear() === todaysYear
-
-    const sameDate = sameDay && sameMonth && sameYear
-    if (sameDate) {
-
-    }
-  } */
-
 export { getDates }
-
-// December 2022 : manque un jour
-// JANVIER 2004 : manque 1 jour

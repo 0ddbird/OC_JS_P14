@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../App'
 import Table from '../components/table/Table'
-import { tableData } from '../mocks/employees'
 
 const EmployeeList = () => {
-  // const { employees } = useContext(AppContext)
+  const { employees } = useContext(AppContext)
   const tableOptions = {
     searchModule: true,
     paginationModule: true,
@@ -14,7 +14,7 @@ const EmployeeList = () => {
   return (
   <>
     <h1>Current Employees</h1>
-    {<Table items={tableData} options={tableOptions}/>}
+    {employees && <Table items={employees} options={tableOptions}/>}
   </>
   )
 }

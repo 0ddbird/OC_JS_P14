@@ -1,35 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../App'
+// Components
 import DatePicker from '../components/datepicker/DatePicker'
 import Modal from '../components/Modal'
 import Select from '../components/Select'
+import Uploader from '../components/jsonUploader/Uploader'
+// Mocks
 import { states } from '../mocks/states'
 import { departments } from '../mocks/departments'
-import { formDataTemplate, formErrorTemplate, defaultBirthdateOptions, defaultStartdateOptions } from '../utils/createEmployee'
-import { AppContext } from '../App'
-import Uploader from '../components/jsonUploader/Uploader'
+// Utils
+import { formDataTemplate, formErrorTemplate, defaultBirthdateOptions, defaultStartdateOptions, defaultDate, formatDateToString } from '../utils/createEmployee'
 
 const CreateEmployee = () => {
-  const modalTitle = 'Confirmation'
-  const modalContent = 'Employee created!'
-
-  const defaultDate = () => {
-    const date = new Date()
-    const dateName = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-
-    return {
-      name: dateName,
-      value: date
-    }
-  }
   const { employees, setEmployees } = useContext(AppContext)
-  const [modalDisplayed, setModalDisplayed] = useState(false)
-  const [selectedState, setSelectedState] = useState(states[0])
-  const [selectedDepartment, setSelectedDepartment] = useState(departments[0])
   const [selectedBirthdate, setSelectedBirthDate] = useState(defaultDate())
   const [selectedStartDate, setSelectedStartDate] = useState(defaultDate())
   const [formData, setFormData] = useState(formDataTemplate)
   const [formErrors, setFormErrors] = useState(formErrorTemplate)
   const [file, setFile] = useState(undefined)
+  const [modalDisplayed, setModalDisplayed] = useState(false)
+  const [selectedState, setSelectedState] = useState(states[0])
+  const [selectedDepartment, setSelectedDepartment] = useState(departments[0])
+  const modalPayload = { title: 'Confirmation', content: 'Employee created!' }
 
   function handleInputChange (e) {
     if (e.target.value.length > 1) {
@@ -43,7 +35,7 @@ const CreateEmployee = () => {
     }
   }
 
-  function setDefinitiveFormObject () {
+  function setLocalFormObject () {
     const newFormData = formData
     newFormData.birthdate = selectedBirthdate
     newFormData.startdate = selectedStartDate
@@ -54,21 +46,11 @@ const CreateEmployee = () => {
 
   function handleFormSubmit (e) {
     e.preventDefault()
-    setDefinitiveFormObject()
+    setLocalFormObject()
     setModalDisplayed(true)
     const currentEmployees = employees
-    // console.log(currentEmployees, setEmployees())
     currentEmployees.items.push(formatEmployee(formData))
-    // console.log(currentEmployees)
     setEmployees(currentEmployees)
-    console.log(employees)
-  }
-
-  function formatDateToString (date) {
-    const isSingleDigitMonth = date.getMonth().toString().length < 2
-    const standardizedMonth = isSingleDigitMonth ? `0${date.getMonth()}` : `${date.getMonth()}`
-
-    return `${date.getFullYear()}-${standardizedMonth}-${date.getDate()}`
   }
 
   function formatEmployee (employeeData) {
@@ -165,8 +147,8 @@ const CreateEmployee = () => {
     </div>
 
     {<Modal
-    title={modalTitle}
-    content={modalContent}
+    title={modalPayload.title}
+    content={modalPayload.content}
     modalDisplayed={modalDisplayed}
     setModalDisplayed={setModalDisplayed}
     />}

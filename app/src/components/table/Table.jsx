@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { v4 as uuidv4 } from 'uuid'
+// Components
 import Select from '../Select'
 import TableSearch from './TableSearch'
 import PageNavigation from './PageNavigation'
 import EntryCount from './EntryCount'
 import TableHeading from './TableHeading'
+// Utils
 import { sortEntries } from '../../utils/handleEntries'
+// Mocks
 import { rangeOptions } from '../../mocks/entries'
 
 const Table = ({ items, options }) => {
@@ -17,12 +20,16 @@ const Table = ({ items, options }) => {
   const [sortOption, setSortOption] = useState(undefined)
   const [searchKeyword, setSearchKeyword] = useState(undefined)
   const tableParams = { range, rangeStart, sortOption, searchKeyword }
-  const categories = Object.values(items.headers)
+  const categories = items.headers
   const gridColumns = `repeat(${categories.length}, 1fr)`
 
   function searchByKeyword (items, keyword) {
     const result = []
-    items.forEach(item => { if (Object.values(item).toString().toLowerCase().includes(keyword)) result.push(item) })
+    const lowerCasedKeyword = keyword.toLowerCase()
+    items.forEach(item => {
+      console.log(item)
+      if (Object.values(item).toString().toLowerCase().includes(lowerCasedKeyword)) result.push(item)
+    })
     return result
   }
 
@@ -40,12 +47,10 @@ const Table = ({ items, options }) => {
     const range = tableParams.range.value
     const rangeStart = tableParams.rangeStart
     const sortOption = tableParams.sortOption
-
     if (keyword) {
       result = searchByKeyword(items, keyword)
       if (result.length === 0) return result
     }
-
     result = selectEntriesInRange(result, range, rangeStart)
     if (sortOption) result = sortEntries(sortOption, result)
     return result
@@ -59,21 +64,21 @@ const Table = ({ items, options }) => {
   return (
     <div className='table'>
       <div className='table-top-options'>
-        { options.paginationModule &&
+        {
+          options.paginationModule &&
           <div className='table-length'>
             Show <Select options={rangeOptions} selected={range} setSelected={setRange}/> entries
           </div>
-
-          }
+        }
         { options.searchModule && <TableSearch setSearchKeyword={setSearchKeyword}/>}
       </div>
-      <div className='title_row' style={{ gridTemplateColumns: gridColumns }}>
+      <div className='table-header-row' style={{ gridTemplateColumns: gridColumns }}>
       {
         categories.map(category => { return <TableHeading key={uuidv4()} category={category} sortOption={sortOption} setSortOption={setSortOption}/> })
       }
       </div>
       {
-        currentBatch.map(item => {
+        currentBatch.map((item) => {
           return (
             <div className='item_row' style={{ gridTemplateColumns: gridColumns }} key={uuidv4()}>
               { Object.entries(item).map(entry => { return <div key={uuidv4()}>{entry[1]}</div> }) }

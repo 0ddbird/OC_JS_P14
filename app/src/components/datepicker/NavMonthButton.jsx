@@ -24,9 +24,9 @@ const NavMonthButton = ({ direction, boundaries, selectedMonthOption, selectedYe
     setSelectedYearOption(newYearOption)
   }
 
-  if (direction === 'next' && !boundaries.end) return <button type='button' className='date-picker-options nav-next' onClick={() => handleNavButtonClick('next')}><img src={arrowRight} alt='next month'/></button>
+  if (direction === 'next' && !boundaries.end) return <button type='button' className='date-picker-options date-nav' onClick={() => handleNavButtonClick('next')}><img src={arrowRight} alt='next month'/></button>
 
-  if (direction === 'previous' && !boundaries.start) return <button type='button' className='date-picker-options nav-prev' onClick={() => handleNavButtonClick('prev')}><img src={arrowLeft} alt='previous month'/></button>
+  if (direction === 'previous' && !boundaries.start) return <button type='button' className='date-picker-options date-nav' onClick={() => handleNavButtonClick('prev')}><img src={arrowLeft} alt='previous month'/></button>
 }
 
 NavMonthButton.propTypes = {

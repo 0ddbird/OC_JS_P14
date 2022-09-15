@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 const PageNavigation = ({ items, range, rangeStart, setRangeStart }) => {
   function handleClick (direction) {
-    if (direction === 'next') {
-      setRangeStart(rangeStart + range)
-    } else setRangeStart(rangeStart - range)
+    if (direction === 'next') setRangeStart(rangeStart + range)
+    else setRangeStart(rangeStart - range)
   }
+
   return (
     <div>
       { rangeStart > 0 && <button onClick={() => handleClick('previous')}>Previous</button>}

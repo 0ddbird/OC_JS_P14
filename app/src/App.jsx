@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+// Components
 import CreateEmployee from './pages/CreateEmployee'
 import EmployeeList from './pages/EmployeeList'
 import Home from './pages/Home'
+// Mocks
+import { tableData } from './mocks/employees'
+// Assets
 import './sass/main.scss'
 import HandShakeIcon from './assets/handshake.svg'
 import addUserIcon from './assets/adduser.svg'
 import usersIcon from './assets/users.svg'
-import { tableData } from './mocks/employees'
 
 export const AppContext = React.createContext()
 

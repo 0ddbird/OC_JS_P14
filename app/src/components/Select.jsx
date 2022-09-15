@@ -9,12 +9,11 @@ const Select = ({ options, selected, setSelected }) => {
   }
   return (
     <select value={`${selected.value}`} onChange={(event) => handleOptionSelection(event)}>
-      {
-        options.map(option => {
-          return (
-            <option key={uuidv4()} value={`${option.value}`}>{option.name}</option>
-          )
-        })
+      { options.map(
+        option => {
+          return <option key={uuidv4()} value={`${option.value}`}>{option.name}</option>
+        }
+      )
       }
     </select>
   )

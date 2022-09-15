@@ -36,4 +36,19 @@ const defaultStartdateOptions = {
   defaultMonth: { name: 'August', value: 7 }
 }
 
-export { formDataTemplate, formErrorTemplate, defaultBirthdateOptions, defaultStartdateOptions }
+function formatDateToString (date) {
+  const isSingleDigitMonth = date.getMonth().toString().length < 2
+  const standardizedMonth = isSingleDigitMonth ? `0${date.getMonth()}` : `${date.getMonth()}`
+  return `${date.getFullYear()}-${standardizedMonth}-${date.getDate()}`
+}
+
+const defaultDate = () => {
+  const date = new Date()
+  const dateName = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+  return {
+    name: dateName,
+    value: date
+  }
+}
+
+export { formDataTemplate, formErrorTemplate, defaultBirthdateOptions, defaultStartdateOptions, defaultDate, formatDateToString }

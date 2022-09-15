@@ -21,7 +21,7 @@ const HomeButton = ({ setSelectedMonthOption, setSelectedYearOption }) => {
     setSelectedYearOption(newYearOption)
   }
 
-  return <button type='button' className='date-picker-options nav-home' onClick={() => handleNavButtonClick('home')}><img src={home} alt='today'/></button>
+  return <button type='button' className='date-picker-options date-nav' onClick={() => handleNavButtonClick('home')}><img src={home} alt='today'/></button>
 }
 
 HomeButton.propTypes = {

@@ -1,17 +1,42 @@
 
-const headers = (
+const headers = [
   {
-    firstName: 'First Name',
-    lastName: 'Last Name',
-    startDate: 'Start Date',
-    department: 'Department',
-    birthDate: 'Birth Date',
-    street: 'Street',
-    city: 'City',
-    state: 'State',
-    zipCode: 'Zip Code'
+    name: 'First Name',
+    value: 'firstName'
+  },
+  {
+    name: 'Last Name',
+    value: 'lastName'
+  },
+  {
+    name: 'Start Date',
+    value: 'startDate'
+  },
+  {
+    name: 'Department',
+    value: 'firstName'
+  },
+  {
+    name: 'Birth Date',
+    value: 'firstname'
+  },
+  {
+    name: 'Street',
+    value: 'street'
+  },
+  {
+    name: 'City',
+    value: 'city'
+  },
+  {
+    name: 'State',
+    value: 'state'
+  },
+  {
+    name: 'Zip Code',
+    value: 'zipCode'
   }
-)
+]
 
 /*
 class Employee {
