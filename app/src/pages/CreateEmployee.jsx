@@ -7,11 +7,33 @@ import Select from '../components/Select'
 import Uploader from '../components/jsonUploader/Uploader'
 // Mocks
 import { states } from '../mocks/states'
-import { departments } from '../mocks/departments'
 // Utils
 import { formDataTemplate, formErrorTemplate, defaultBirthdateOptions, defaultStartdateOptions, defaultDate, formatDateToString } from '../utils/createEmployee'
 
 const CreateEmployee = () => {
+  const departments = [
+    {
+      name: 'Sales',
+      value: 'sales'
+    },
+    {
+      name: 'Marketing',
+      value: 'marketing'
+    },
+    {
+      name: 'Engineering',
+      value: 'engineering'
+    },
+    {
+      name: 'Human Resources',
+      value: 'hr'
+    },
+    {
+      name: 'Legal',
+      value: 'legal'
+    }
+  ]
+
   const { employees, setEmployees } = useContext(AppContext)
   const [selectedBirthdate, setSelectedBirthDate] = useState(defaultDate())
   const [selectedStartDate, setSelectedStartDate] = useState(defaultDate())

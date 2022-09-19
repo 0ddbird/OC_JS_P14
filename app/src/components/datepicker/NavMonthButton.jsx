@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import arrowRight from '../../assets/arrowRight.svg'
 import arrowLeft from '../../assets/arrowLeft.svg'
-// import home from '../../assets/home.svg'
 
 const NavMonthButton = ({ direction, boundaries, selectedMonthOption, selectedYearOption, setSelectedMonthOption, setSelectedYearOption }) => {
   function handleNavButtonClick (target) {
@@ -24,9 +23,8 @@ const NavMonthButton = ({ direction, boundaries, selectedMonthOption, selectedYe
     setSelectedYearOption(newYearOption)
   }
 
-  if (direction === 'next' && !boundaries.end) return <button type='button' className='date-picker-options date-nav' onClick={() => handleNavButtonClick('next')}><img src={arrowRight} alt='next month'/></button>
-
-  if (direction === 'previous' && !boundaries.start) return <button type='button' className='date-picker-options date-nav' onClick={() => handleNavButtonClick('prev')}><img src={arrowLeft} alt='previous month'/></button>
+  if (direction === 'next' && !boundaries.end) return <button type='button' className='datepicker-options date-nav' onClick={() => handleNavButtonClick('next')}><img src={arrowRight} alt='next month'/></button>
+  if (direction === 'previous' && !boundaries.start) return <button type='button' className='datepicker-options date-nav' onClick={() => handleNavButtonClick('prev')}><img src={arrowLeft} alt='previous month'/></button>
 }
 
 NavMonthButton.propTypes = {

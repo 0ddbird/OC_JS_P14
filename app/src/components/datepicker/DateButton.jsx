@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const DateButton = ({ date, month, setSelectedDate, setDatePickerOpen }) => {
+const DateButton = ({ date, month, setSelectedDate, setDatePickerOpen, isToday }) => {
   function formatDateValue (dateString) {
     const date = new Date(dateString)
     return {
@@ -15,7 +15,7 @@ const DateButton = ({ date, month, setSelectedDate, setDatePickerOpen }) => {
     setDatePickerOpen(false)
   }
 
-  const className = `cell date ${month}-month-date`
+  const className = isToday ? `cell date ${month}-month-date today` : `cell date ${month}-month-date`
   return <button
   type='button'
   className= {className}
@@ -29,7 +29,8 @@ DateButton.propTypes = {
   date: PropTypes.instanceOf(Date),
   setSelectedDate: PropTypes.func,
   setDatePickerOpen: PropTypes.func,
-  month: PropTypes.string
+  month: PropTypes.string,
+  isToday: PropTypes.bool
 }
 
 export default DateButton

@@ -8,9 +8,9 @@ const Modal = ({ title, content, modalDisplayed, setModalDisplayed }) => {
 
   return (
     <div className={modalDisplayed ? 'modal displayed' : 'modal hidden'}>
-    <h1>{title}</h1>
-    <span>{content}</span>
-    <button className='modal-close' onClick={handleCloseModal}>x</button>
+      <h1 className='modal-title'>{title}</h1>
+      <span className='modal-content'>{content}</span>
+      <button className='modal-close' onClick={handleCloseModal}>x</button>
     </div>
   )
 }

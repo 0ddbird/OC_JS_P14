@@ -1,21 +1,25 @@
 @use '../abstract/' as a;
 
-.date-picker {
+.datepicker {
   position: relative;
   background-color: a.$clr-grey;
 }
 
-.date-picker-panel {
-  background-color: a.$clr-grey;
-  border: 1px solid a.$clr-dgrey;
-  padding: 5px;
-  border-radius: 5px;
-  position: absolute;
-  z-index: 1;
-  /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+.datepicker-panel {
+  display: none;
+
+  &--focused {
+    display: block;
+    background-color: a.$clr-grey;
+    border: 1px solid a.$clr-dgrey;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+  }
 }
 
-.date-picker__weekdays {
+.datepicker-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -30,8 +34,6 @@
   align-items: center;
   background-color: white;
   cursor: pointer;
-
-
 }
 
 .cell.date {
@@ -41,12 +43,16 @@
   }
 }
 
+.today {
+  background-color: a.$clr-blue;
+  color: white;
+  font-weight: 700;
+}
+
 .date-picker__dates {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
-
-
 
 .previous-month-date {
   background-color: a.$clr-grey;
@@ -58,7 +64,7 @@
   color: a.$clr-dgrey;
 }
 
-.date-picker-options {
+.datepicker-options {
   display: flex;
   justify-content: space-evenly;
   align-items: center;

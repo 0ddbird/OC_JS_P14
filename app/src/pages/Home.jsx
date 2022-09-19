@@ -6,7 +6,7 @@ import addUserIcon from '../assets/adduser.svg'
 const Home = () => {
   return (
   <div className='home'>
-    <h1>HRnet</h1>
+    <h1>Bienvenue sur HRnet</h1>
     <div className='employee'></div>
     <NavLink className='home-link' to='/create'>
     <img className='home-icon' src={addUserIcon} alt='Créer un profil employé' />

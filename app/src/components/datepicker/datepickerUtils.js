@@ -39,9 +39,9 @@ function fillDaysFromPreviousMonth (startDate) {
 
 function fillDaysFromNextMonth (stopDate) {
   const dateArray = []
-  let currentStopDate = stopDate
+  let currentStopDate = stopDate.addDays(1)
 
-  for (let i = currentStopDate.getDay(); i !== 6; i++) {
+  for (let i = currentStopDate.getDay(); i <= 6; i++) {
     dateArray.push(new Date(currentStopDate))
     currentStopDate = currentStopDate.addDays(1)
   }

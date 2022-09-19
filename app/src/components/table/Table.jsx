@@ -7,8 +7,7 @@ import TableSearch from './TableSearch'
 import PageNavigation from './PageNavigation'
 import EntryCount from './EntryCount'
 import TableHeading from './TableHeading'
-// Utils
-import { sortEntries } from '../../utils/handleEntries'
+
 // Mocks
 import { rangeOptions } from '../../mocks/entries'
 
@@ -27,7 +26,6 @@ const Table = ({ items, options }) => {
     const result = []
     const lowerCasedKeyword = keyword.toLowerCase()
     items.forEach(item => {
-      console.log(item)
       if (Object.values(item).toString().toLowerCase().includes(lowerCasedKeyword)) result.push(item)
     })
     return result
@@ -39,6 +37,28 @@ const Table = ({ items, options }) => {
     for (let i = rangeStart; i < rangeStart + range; i++) if (entries[i]) result.push(entries[i])
 
     return result
+  }
+
+  function sortEntries (sortOption, batch) {
+    const direction = sortOption.sortDirection
+    let sortedBatch = batch
+    if (direction === 'desc') {
+      sortedBatch = sortedBatch.sort(
+        (itemA, itemB) => {
+          if (itemA[`${sortOption.category}`] > itemB[`${sortOption.category}`]) return -1
+          if (itemA[`${sortOption.category}`] < itemB[`${sortOption.category}`]) return 1
+          return 0
+        }
+      )
+    } else if (direction === 'asc') {
+      sortedBatch = sortedBatch.sort(
+        (itemA, itemB) => {
+          if (itemA[`${sortOption.category}`] < itemB[`${sortOption.category}`]) return -1
+          if (itemA[`${sortOption.category}`] > itemB[`${sortOption.category}`]) return 1
+          return 0
+        })
+    }
+    return sortedBatch
   }
 
   function processBatch (items, tableParams) {
@@ -81,7 +101,7 @@ const Table = ({ items, options }) => {
         currentBatch.map((item) => {
           return (
             <div className='item_row' style={{ gridTemplateColumns: gridColumns }} key={uuidv4()}>
-              { Object.entries(item).map(entry => { return <div key={uuidv4()}>{entry[1]}</div> }) }
+              { Object.entries(item).map(entry => { return <div className='table-cell' key={uuidv4()}>{entry[1]}</div> }) }
             </div>
           )
         })
