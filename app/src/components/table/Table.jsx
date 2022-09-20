@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { v4 as uuidv4 } from 'uuid'
 // Components
-import Select from '../Select'
+import Select from 'react-controlled-select'
 import TableSearch from './TableSearch'
 import PageNavigation from './PageNavigation'
 import EntryCount from './EntryCount'

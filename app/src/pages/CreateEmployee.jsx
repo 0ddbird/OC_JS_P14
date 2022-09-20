@@ -3,7 +3,7 @@ import { AppContext } from '../App'
 // Components
 import DatePicker from '../components/datepicker/DatePicker'
 import Modal from '../components/Modal'
-import Select from '../components/Select'
+import Select from 'react-controlled-select'
 import Uploader from '../components/jsonUploader/Uploader'
 // Mocks
 import { states } from '../mocks/states'
@@ -80,7 +80,7 @@ const CreateEmployee = () => {
       firstName: employeeData.firstname,
       lastName: employeeData.lastname,
       startDate: formatDateToString(employeeData.startdate.value),
-      department: employeeData.department.value,
+      department: employeeData.department.name,
       birthDate: formatDateToString(employeeData.birthdate.value),
       street: employeeData.street,
       city: employeeData.city,
